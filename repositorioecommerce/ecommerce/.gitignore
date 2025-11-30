@@ -1,0 +1,14 @@
+# Archivos de python compilados
+__pycache__/
+*.pyc
+
+# Base de datos local (no se sube, en producción se crea otra)
+db.sqlite3
+
+# Entorno virtual (IMPORTANTE: pon aquí el nombre de tu carpeta de entorno)
+env/
+venv/
+.env
+
+# Archivos de sistema
+.DS_Store
