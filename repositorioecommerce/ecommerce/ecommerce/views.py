@@ -1,11 +1,11 @@
 from django.shortcuts import render 
 
 def Home(request):
-    return render(request, 'home.html')
+    return render(request, 'general/home.html')
 
 def Contacto(request):
-    return render(request, 'contacto.html')
+    return render(request, 'general/contacto.html')
 
 def Sobre_Nosotros(request):
-    return render(request, 'sobre_nosotros.html')
+    return render(request, 'general/sobre_nosotros.html')
 
