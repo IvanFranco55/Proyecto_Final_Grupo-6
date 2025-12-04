@@ -1,0 +1,20 @@
+{% extends 'general/base.html' %}
+
+{% block contenido %}
+
+<div>
+    <h1>SOY EL QUE LISTA LOS ARTICULOS</h1>
+
+    {% for a in articulos %}
+    <ul style="display: inline-block;">
+        <li>{{a.titulo}}</li>
+
+        {% if a.imagen %}
+        <img src="{{a.imagen.url}}" width="200">
+        {% endif %}
+
+    </ul>
+    {% endfor %}
+</div>
+
+{% endblock contenido %}
