@@ -8,4 +8,3 @@ def Contacto(request):
 
 def Sobre_Nosotros(request):
     return render(request, 'general/sobre_nosotros.html')
-
