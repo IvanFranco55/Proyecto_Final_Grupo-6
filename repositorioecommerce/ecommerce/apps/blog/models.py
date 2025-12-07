@@ -15,7 +15,7 @@ class Articulo(models.Model):
     fecha_publicacion = models.DateTimeField(auto_now=True)
     fecha_actualizacion = models.DateTimeField(auto_now_add=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
-    Categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
+    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.titulo
