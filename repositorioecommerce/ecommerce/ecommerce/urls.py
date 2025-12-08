@@ -13,5 +13,6 @@ path('contacto/', views.Contacto, name = 'path_contacto'),
 path('sobre_nosotros/', views.Sobre_Nosotros, name = 'path_sobre_nosotros'),
 #enlazamos con las apps
 path('blog/', include('blog.urls')),
+path('usuarios/', include('usuarios.urls'))
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
