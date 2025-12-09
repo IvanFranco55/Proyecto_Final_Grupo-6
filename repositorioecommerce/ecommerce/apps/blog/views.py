@@ -55,4 +55,41 @@ def Filtro_Categoria(request, pk):
     context['categorias'] = categorias
 
     return render(request, 'blog/listar.html', context)
+
+# --- FUNCIÓN 1: BUSCADOR POR TÍTULO ---
+def Buscador(request):
+    # Primero chequeamos si mandaron algo (POST)
+    if request.method == 'POST':
+        # Agarramos lo que escribió el usuario en el input 'busqueda'
+        busqueda = request.POST['busqueda']
+        
+        # Filtramos por título (icontains ignora mayúsculas/minúsculas)
+        articulos = Articulo.objects.filter(titulo__icontains=busqueda)
+        
+        context = {
+            'articulos': articulos,
+            'categorias': Categoria.objects.all() # Para que no se rompa el menú lateral
+        }
+        return render(request, 'blog/listar.html', context)
     
+    # Si entra por GET (sin buscar nada), lo mandamos al listar normal
+    return render(request, 'blog/listar.html')
+
+
+# --- FUNCIÓN 2: FILTRO POR FECHA ---
+# --- FUNCIÓN: FILTRO POR FECHA (Ordena por antigüedad) ---
+def Filtro_Fecha(request, orden):
+    
+    if orden == 'antiguo':
+        # Orden ascendente (del más viejo al más nuevo)
+        articulos = Articulo.objects.all().order_by('fecha_publicacion')
+    else:
+        # Por defecto: Orden descendente (del más nuevo al más viejo)
+        articulos = Articulo.objects.all().order_by('-fecha_publicacion')
+
+    context = {
+        'articulos': articulos,
+        'categorias': Categoria.objects.all() # Para mantener el menú lateral
+    }
+    
+    return render(request, 'blog/listar.html', context)

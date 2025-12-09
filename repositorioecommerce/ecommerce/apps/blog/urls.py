@@ -19,6 +19,13 @@ urlpatterns = [
 
     path('eliminar/<int:pk>', views.Eliminar_Articulo.as_view(), name= 'path_eliminar_articulo'),
 
-    path('filtrarxcategoria/<int:pk>', views.Filtro_Categoria, name= 'path_filtrado_categoria')
+    #FILTROS
+
+    path('filtrarxcategoria/<int:pk>', views.Filtro_Categoria, name= 'path_filtrado_categoria'),
+
+    path('buscador/', views.Buscador, name='path_buscador'),
+    
+    path('fecha/<str:orden>/', views.Filtro_Fecha, name='path_filtrado_fecha'),
+
 ]
     

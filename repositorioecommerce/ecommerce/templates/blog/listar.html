@@ -6,33 +6,46 @@
 
     <aside class="barra-lateral">
 
-        <h3 class="titulo-filtro">FILTRAR DATOS</h3>
+        <h3 class="titulo-filtro">PANEL DE CONTROL</h3>
 
-        <div class="dropdown-container">
-            <button class="btn-dropdown">
-                {% if categoria_seleccionada %}
-                📂 {{ categoria_seleccionada.nombre_categoria }} ▼
-                {% else %}
-                🔍 Categorías ▼
-                {% endif %}
-            </button>
+        <form method="POST" action="{% url 'blog:path_buscador' %}">
+            {% csrf_token %}
+            <label style="color:var(--neon-green); font-weight:bold;">BÚSQUEDA:</label>
 
-            <div class="dropdown-content">
-                <a href="{% url 'blog:path_listar_articulos' %}">[X] VER TODO</a>
-
-                {% for c in categorias %}
-                <a href="{% url 'blog:path_filtrado_categoria' c.pk %}">
-                    > {{ c.nombre_categoria }}
-                </a>
-                {% endfor %}
+            <div style="margin-top: 5px; margin-bottom: 10px;">
+                <input type="text" name="busqueda" class="input-hacker" placeholder="Escribe el título...">
             </div>
+
+            <button type="submit" class="btn-login" style="width:100%;">🔎 BUSCAR</button>
+        </form>
+
+        <hr style="border-color: #30363d; margin: 20px 0;">
+
+        <label style="color:var(--neon-green); font-weight:bold; margin-bottom: 10px; display:block;">
+            ORDENAR POR FECHA:
+        </label>
+
+        <div style="display: flex; gap: 10px; flex-direction: column;">
+            <a href="{% url 'blog:path_filtrado_fecha' 'nuevo' %}" class="btn-orden">
+                ⬇️ Más Recientes
+            </a>
+
+            <a href="{% url 'blog:path_filtrado_fecha' 'antiguo' %}" class="btn-orden">
+                ⬆️ Más Antiguos
+            </a>
         </div>
 
-        <div style="margin-top: 20px;">
-            <a href="{% url 'blog:path_crear_articulo' %}" class="btn-registro"
-                style="display:block; text-align:center;">
-                + NUEVO ARTÍCULO
-            </a>
+        <hr style="border-color: #30363d; margin: 20px 0;">
+
+        <label style="color:var(--neon-green); font-weight:bold;">CATEGORÍAS:</label>
+        <div class="dropdown-container" style="margin-top: 5px;">
+            <button class="btn-dropdown">📂 Seleccionar Categoría ▼</button>
+            <div class="dropdown-content">
+                <a href="{% url 'blog:path_listar_articulos' %}">[X] Ver todo</a>
+                {% for c in categorias %}
+                <a href="{% url 'blog:path_filtrado_categoria' c.pk %}">> {{ c.nombre_categoria }}</a>
+                {% endfor %}
+            </div>
         </div>
 
     </aside>

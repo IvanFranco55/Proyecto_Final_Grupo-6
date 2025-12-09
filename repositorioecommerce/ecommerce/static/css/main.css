@@ -210,3 +210,53 @@ button {
     flex-direction: column;
     gap: 10px;
 }
+
+/* =========================================
+   ESTILO GLOBAL DE INPUTS (HACKER STYLE)
+   Sirve para: Buscador, Login, Registro, Formularios
+   ========================================= */
+
+.input-hacker {
+    width: 100%;
+    padding: 12px 15px;
+    /* Espacio interno cómodo */
+
+    /* ELIMINAR EL BLANCO FEO */
+    background-color: #0d1117;
+    /* Fondo negro profundo */
+    border: 1px solid #30363d;
+    /* Borde gris oscuro sutil */
+    color: #c9d1d9;
+    /* Texto blanco suave */
+
+    /* FUENTE Y BORDES */
+    font-family: var(--font-stack);
+    font-size: 1rem;
+    border-radius: 6px;
+    /* Bordes apenas redondeados */
+
+    /* SACAR ESTILOS DEL NAVEGADOR */
+    outline: none;
+    /* Chau borde azul de Chrome */
+    box-shadow: none;
+    box-sizing: border-box;
+    /* Para que no se salga del contenedor */
+    transition: all 0.3s ease;
+}
+
+/* EFECTO AL HACER CLICK (FOCUS) */
+.input-hacker:focus {
+    border-color: var(--neon-green);
+    /* Borde verde neón */
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+    /* Resplandor verde suave */
+    background-color: #161b22;
+    /* Un negro apenas más claro */
+}
+
+/* EL TEXTO DE "ESCRIBE EL TÍTULO..." (PLACEHOLDER) */
+.input-hacker::placeholder {
+    color: #484f58;
+    /* Gris oscuro para que no moleste */
+    font-style: italic;
+}
