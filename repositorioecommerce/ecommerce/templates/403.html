@@ -1,0 +1,60 @@
+{% extends 'general/base.html' %}
+
+{% block contenido %}
+
+<div style="
+    height: 80vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    font-family: 'Courier New', monospace;
+">
+
+    <div style="font-size: 5rem; margin-bottom: 20px;">
+        ⛔
+    </div>
+
+    <h1 style="
+        font-size: 6rem; 
+        margin: 0; 
+        color: #ff4444; 
+        text-shadow: 0 0 20px rgba(255, 68, 68, 0.4);
+    ">
+        403
+    </h1>
+
+    <h2 style="color: #ff4444; border: 2px solid #ff4444; padding: 10px 20px; margin-top: 20px;">
+        ACCESO DENEGADO
+    </h2>
+
+    <p style="color: #c9d1d9; max-width: 600px; margin-top: 20px; font-size: 1.2rem;">
+        No tienes las credenciales de seguridad necesarias para realizar esta operación.<br>
+        Tu intento de acceso ha sido registrado en los logs del sistema.
+    </p>
+
+    <div style="margin-top: 40px; display: flex; gap: 20px;">
+        <a href="{% url 'path_home' %}" style="
+            color: #8b949e; 
+            text-decoration: none; 
+            border: 1px solid #8b949e; 
+            padding: 10px 20px;
+        ">
+            CANCELAR
+        </a>
+
+        <a href="{% url 'usuarios:path_login' %}" style="
+            color: #ff4444; 
+            text-decoration: none; 
+            border: 1px solid #ff4444; 
+            padding: 10px 20px; 
+            font-weight: bold;
+        ">
+            CAMBIAR CREDENCIALES
+        </a>
+    </div>
+
+</div>
+
+{% endblock contenido %}

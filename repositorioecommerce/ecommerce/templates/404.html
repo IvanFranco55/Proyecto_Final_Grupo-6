@@ -1,0 +1,44 @@
+{% extends 'general/base.html' %}
+
+{% block contenido %}
+
+<div style="
+    height: 80vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    font-family: 'Courier New', monospace;
+">
+
+    <h1 style="
+        font-size: 8rem; 
+        margin: 0; 
+        color: #30363d; 
+        text-shadow: 2px 2px 0px var(--neon-green);
+    ">
+        404
+    </h1>
+
+    <h2 style="color: var(--neon-green); margin-top: -20px; background-color: #0d1117; padding: 0 10px;">
+        ERROR: ARCHIVO NO ENCONTRADO_
+    </h2>
+
+    <p style="color: #8b949e; max-width: 500px; margin-top: 20px; font-size: 1.1rem;">
+        El recurso que intentas localizar ha sido eliminado, movido o nunca existió en este servidor.
+    </p>
+
+    <div style="color: #ff4444; margin: 30px 0; font-size: 0.9rem;">
+        > Traceback (most recent call last):<br>
+        > File "system/core/reality.py", line 404<br>
+        > ObjectNotFoundException: Target is missing.
+    </div>
+
+    <a href="{% url 'path_home' %}" class="btn-login" style="padding: 15px 30px; text-decoration: none;">
+        > REINICIAR CONEXIÓN (VOLVER AL HOME)
+    </a>
+
+</div>
+
+{% endblock contenido %}

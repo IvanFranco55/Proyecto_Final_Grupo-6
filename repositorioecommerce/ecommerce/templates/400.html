@@ -1,0 +1,47 @@
+{% extends 'general/base.html' %}
+
+{% block contenido %}
+
+<div style="
+    height: 80vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    font-family: 'Courier New', monospace;
+">
+
+    <h1 style="
+        font-size: 6rem; 
+        margin: 0; 
+        color: #d63384; /* Un color rosa/violeta tipo glitch */
+        text-shadow: 3px 0px 0px cyan;
+    ">
+        400
+    </h1>
+
+    <h2 style="color: #d63384; border-bottom: 2px solid #d63384; padding-bottom: 10px;">
+        BAD REQUEST SYNTAX
+    </h2>
+
+    <p style="color: #8b949e; max-width: 500px; margin-top: 20px; font-size: 1.1rem;">
+        El servidor no pudo interpretar la solicitud. <br>
+        Los paquetes de datos enviados están corruptos o tienen un formato inválido.
+    </p>
+
+    <div style="margin-top: 40px;">
+        <a href="{% url 'path_home' %}" style="
+            color: var(--neon-green); 
+            text-decoration: none; 
+            border: 1px solid var(--neon-green); 
+            padding: 10px 30px;
+            font-weight: bold;
+        ">
+            > VOLVER AL INICIO
+        </a>
+    </div>
+
+</div>
+
+{% endblock contenido %}

@@ -79,8 +79,13 @@
 
     {% if articulo.imagen %}
     <div style="margin-bottom: 30px; border: 1px solid #30363d; padding: 5px;">
-        <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}"
-            style="width: 100%; height: auto; display: block;">
+        <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}" style="
+                width: 100%; 
+                height: 450px; 
+                object-fit: cover; 
+                object-position: center; 
+                display: block;
+            ">
     </div>
     {% endif %}
 

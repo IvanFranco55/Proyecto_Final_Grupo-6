@@ -1,0 +1,70 @@
+{% extends 'general/base.html' %}
+
+{% block contenido %}
+
+<div style="
+    height: 80vh; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    background: radial-gradient(circle, rgba(50,0,0,0.2) 0%, rgba(0,0,0,0) 70%);
+">
+
+    <div style="font-size: 6rem; margin-bottom: 10px;">
+        ☣️
+    </div>
+
+    <h1 style="
+        font-size: 7rem; 
+        margin: 0; 
+        color: #ff0000; 
+        text-shadow: 0 0 15px red;
+        letter-spacing: -5px;
+    ">
+        500
+    </h1>
+
+    <h2 style="
+        background-color: #ff0000; 
+        color: black; 
+        padding: 5px 20px; 
+        font-weight: bold;
+        margin-top: -10px;
+    ">
+        INTERNAL SYSTEM FAILURE
+    </h2>
+
+    <p style="color: #c9d1d9; max-width: 600px; margin-top: 30px; font-size: 1.1rem;">
+        Se ha detectado una anomalía crítica en el núcleo del servidor.<br>
+        El proceso ha sido abortado para proteger la integridad de los datos.
+    </p>
+
+    <div style="
+        text-align: left; 
+        background-color: #0d1117; 
+        border: 1px solid #30363d; 
+        padding: 15px; 
+        margin-top: 30px; 
+        color: #ff4444; 
+        font-size: 0.8rem;
+        width: 100%;
+        max-width: 500px;
+    ">
+        > SYSTEM_STATUS: CRITICAL<br>
+        > DIAGNOSTIC: UNEXPECTED EXCEPTION<br>
+        > ACTION: RESTARTING WORKERS...<br>
+        > ADMIN_NOTIFIED: TRUE
+    </div>
+
+    <div style="margin-top: 40px;">
+        <a href="{% url 'path_home' %}" class="btn-orden" style="color: white; border-color: white;">
+            REINTENTAR CONEXIÓN
+        </a>
+    </div>
+
+</div>
+
+{% endblock contenido %}

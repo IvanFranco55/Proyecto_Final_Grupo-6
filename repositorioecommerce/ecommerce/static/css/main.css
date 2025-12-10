@@ -1,15 +1,8 @@
-/* =========================================
-   1. VARIABLES Y BASE (Colores y Fondo)
-   ========================================= */
 :root {
     --bg-dark: #0d1117;
-    /* Negro fondo */
     --neon-green: #00ff41;
-    /* Verde Hacker */
     --text-color: #c9d1d9;
-    /* Blanco suave */
     --border-color: #30363d;
-    /* Gris borde */
     --font-stack: 'Consolas', 'Courier New', monospace;
 }
 
@@ -20,12 +13,9 @@ body {
     color: var(--text-color);
     font-family: var(--font-stack);
     box-sizing: border-box;
-    /* IMPORTANTE: Para que los bordes no rompan el diseño */
 }
 
-/* =========================================
-   2. HEADER (Logo y Menú Horizontal)
-   ========================================= */
+
 .header-principal {
     display: flex;
     justify-content: space-between;
@@ -37,7 +27,6 @@ body {
 
 .logo {
     height: 100px;
-    /* Tamaño del logo ajustado */
     width: auto;
 }
 
@@ -63,9 +52,6 @@ a:hover {
     align-items: center;
 }
 
-/* =========================================
-   3. BOTONES GENERALES (Login, Registro, Leer más)
-   ========================================= */
 .btn-login,
 .btn-registro,
 .btn-logout,
@@ -90,9 +76,7 @@ button {
     box-shadow: 0 0 10px var(--neon-green);
 }
 
-/* =========================================
-   4. EL DROPDOWN (Menú Desplegable)
-   ========================================= */
+
 .dropdown-container {
     position: relative;
     display: inline-block;
@@ -107,7 +91,6 @@ button {
 
 .dropdown-content {
     display: none;
-    /* Oculto por defecto */
     position: absolute;
     background-color: #161b22;
     min-width: 100%;
@@ -128,27 +111,23 @@ button {
 
 .dropdown-container:hover .dropdown-content {
     display: block;
-    /* Aparece al pasar el mouse */
+
 }
 
-/* =========================================
-   5. ESTRUCTURA DEL BLOG (Lo que te faltaba)
-   Acomoda: Izquierda (Filtros) - Derecha (Artículos)
-   ========================================= */
+
 .blog-container {
     display: flex;
-    /* Pone las columnas lado a lado */
+
     gap: 30px;
-    /* Espacio entre filtro y noticias */
+
     padding: 20px 50px;
     align-items: flex-start;
 }
 
 .barra-lateral {
     width: 250px;
-    /* Ancho fijo del filtro */
+
     flex-shrink: 0;
-    /* No se achica */
     padding: 15px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -156,23 +135,18 @@ button {
 
 .columna-articulos {
     flex-grow: 1;
-    /* Ocupa el resto del espacio */
+
 }
 
-/* =========================================
-   6. LA GRILLA DE 3 COLUMNAS (Lo que te faltaba)
-   ========================================= */
+
 .grilla-articulos {
     display: grid !important;
-    /* ESTO HACE LAS 3 COLUMNAS: */
+
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
 
-/* =========================================
-   7. LAS TARJETAS / CARDS (Lo que te faltaba)
-   Controla que las imágenes sean iguales
-   ========================================= */
+
 .card {
     background-color: #161b22;
     border: 1px solid var(--border-color);
@@ -185,23 +159,21 @@ button {
 .card:hover {
     border-color: var(--neon-green);
     transform: translateY(-5px);
-    /* Efecto levantar */
+
 }
 
-/* CAJA DE LA FOTO (Tamaño fijo) */
 .card-img-container {
     width: 100%;
     height: 180px;
-    /* <--- ALTURA FIJA PARA TODAS LAS FOTOS */
     background-color: black;
 }
 
-/* LA FOTO EN SÍ */
+
 .card-img-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* <--- RECORTA LA FOTO PARA QUE NO SE DEFORME */
+
 }
 
 .card-contenido {
@@ -211,82 +183,72 @@ button {
     gap: 10px;
 }
 
-/* =========================================
-   ESTILO GLOBAL DE INPUTS (HACKER STYLE)
-   Sirve para: Buscador, Login, Registro, Formularios
-   ========================================= */
+
 
 .input-hacker {
     width: 100%;
     padding: 12px 15px;
-    /* Espacio interno cómodo */
 
-    /* ELIMINAR EL BLANCO FEO */
+
+
     background-color: #0d1117;
-    /* Fondo negro profundo */
-    border: 1px solid #30363d;
-    /* Borde gris oscuro sutil */
-    color: #c9d1d9;
-    /* Texto blanco suave */
 
-    /* FUENTE Y BORDES */
+    border: 1px solid #30363d;
+
+    color: #c9d1d9;
+
+
+
     font-family: var(--font-stack);
     font-size: 1rem;
     border-radius: 6px;
-    /* Bordes apenas redondeados */
 
-    /* SACAR ESTILOS DEL NAVEGADOR */
+
+
     outline: none;
-    /* Chau borde azul de Chrome */
+
     box-shadow: none;
     box-sizing: border-box;
-    /* Para que no se salga del contenedor */
+
     transition: all 0.3s ease;
 }
 
-/* EFECTO AL HACER CLICK (FOCUS) */
+
 .input-hacker:focus {
     border-color: var(--neon-green);
-    /* Borde verde neón */
+
     box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
-    /* Resplandor verde suave */
+
     background-color: #161b22;
-    /* Un negro apenas más claro */
+
 }
 
-/* EL TEXTO DE "ESCRIBE EL TÍTULO..." (PLACEHOLDER) */
+
 .input-hacker::placeholder {
     color: #484f58;
-    /* Gris oscuro para que no moleste */
+
     font-style: italic;
 }
 
-/* =========================================
-   ESTILO PARA LOGIN Y REGISTRO
-   ========================================= */
 
-/* 1. LA CAJA CENTRAL (La tarjeta flotante) */
 .auth-box {
     background-color: #161b22;
-    /* Gris oscuro */
+
     border: 1px solid var(--neon-green);
     padding: 40px;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 255, 65, 0.15);
-    /* Resplandor verde */
+
     max-width: 400px;
     width: 100%;
     margin: 0 auto;
-    /* Centrado */
 }
 
-/* 2. FORZAR ESTILO HACKER A LOS INPUTS DE DJANGO 
-   (Esto hace que el Login se arregle solo) */
+
 .auth-box input[type="text"],
 .auth-box input[type="password"],
 .auth-box input[type="email"],
 .auth-box input[type="number"] {
-    /* Copia exacta de las propiedades de .input-hacker */
     width: 100%;
     padding: 12px 15px;
     background-color: #0d1117;
@@ -296,7 +258,6 @@ button {
     border-radius: 6px;
     outline: none;
     margin-bottom: 20px;
-    /* Espacio entre campos */
     box-sizing: border-box;
     transition: 0.3s;
 }
@@ -306,7 +267,6 @@ button {
     box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
 }
 
-/* 3. ETIQUETAS (Username, Password...) */
 .auth-box label {
     display: block;
     color: var(--neon-green);
@@ -314,10 +274,8 @@ button {
     font-weight: bold;
     font-size: 0.9rem;
     text-transform: uppercase;
-    /* Letras mayúsculas estilo militar */
 }
 
-/* 4. TEXTOS DE AYUDA (Como "La contraseña debe tener...") */
 .helptext,
 .auth-box ul {
     color: gray;
