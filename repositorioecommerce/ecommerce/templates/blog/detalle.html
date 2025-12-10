@@ -5,7 +5,7 @@
 
 <div style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
 
-    {% if user.is_staff %}
+    {% if user == articulo.autor or user.is_staff %}
     <div style="
         border: 1px dashed #d63384; 
         background-color: rgba(214, 51, 132, 0.05); 
@@ -17,7 +17,7 @@
         align-items: center;
     ">
         <span style="color: #d63384; font-weight: bold; font-family: monospace;">
-            [⚠️ ADMIN MODE ACTIVATED]
+            [⚠️ MODO EDICIÓN]
         </span>
 
         <div>
@@ -94,7 +94,7 @@
         line-height: 1.8; 
         color: #c9d1d9; 
         margin-bottom: 60px;
-        white-space: pre-wrap; /* Respeta los espacios y saltos de línea */
+        white-space: pre-wrap;
     ">
         {{ articulo.contenido }}
     </article>

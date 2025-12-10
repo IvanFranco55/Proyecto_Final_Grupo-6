@@ -61,7 +61,7 @@ def Filtro_Fecha(request, orden):
     return render(request, 'blog/listar.html', context)
 
 
-class Crear_Articulo(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+class Crear_Articulo(LoginRequiredMixin, CreateView):
     model = Articulo
     template_name = 'blog/crear.html'
     form_class = FormularioCrearArticulo
@@ -75,22 +75,26 @@ class Crear_Articulo(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         return self.request.user.is_staff
 
 
-class Modificar_Articulo(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class Modificar_Articulo(LoginRequiredMixin, UpdateView):
     model = Articulo
     template_name = 'blog/modificar.html'
     form_class = FormularioModificarArticulo
     success_url = reverse_lazy('blog:path_listar_articulos')
 
-    def test_func(self):
-        return self.request.user.is_staff
+    def form_valid(self, form):
+        form.instance.autor = self.request.user
+        return super().form_valid(form)
+
 
 class Eliminar_Articulo(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-     model = Articulo
-     template_name = 'blog/eliminar.html'
-     success_url = reverse_lazy('blog:path_listar_articulos')
+    model = Articulo
+    template_name = 'blog/eliminar.html'
+    success_url = reverse_lazy('blog:path_listar_articulos')
 
-     def test_func(self):
-        return self.request.user.is_staff
+    def test_func(self):
+        articulo = self.get_object()
+        # Pasa si: Es el autor O si es Staff (admin)
+        return self.request.user == articulo.autor or self.request.user.is_staff
 
 #LOGICA DE COMENTARIOS
 
