@@ -1,49 +1,186 @@
 {% extends 'general/base.html' %}
+{% load static %}
 
 {% block contenido %}
 
-<div>
-    <h1>Detalle del articulo</h1>
+<div style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
 
-    <ul style="display: inline-block;">
-        <li>{{articulo.titulo}}</li>
+    {% if user.is_staff %}
+    <div style="
+        border: 1px dashed #d63384; 
+        background-color: rgba(214, 51, 132, 0.05); 
+        padding: 15px; 
+        margin-bottom: 30px; 
+        border-radius: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    ">
+        <span style="color: #d63384; font-weight: bold; font-family: monospace;">
+            [⚠️ ADMIN MODE ACTIVATED]
+        </span>
 
-        {% if articulo.imagen %}
-        <img src="{{articulo.imagen.url}}" width="200" , height="200">
-        {% endif %}
+        <div>
+            <a href="{% url 'blog:path_modificar_articulo' articulo.pk %}" style="
+                color: #ffc107; 
+                text-decoration: none; 
+                border: 1px solid #ffc107; 
+                padding: 5px 15px; 
+                margin-right: 10px; 
+                font-size: 0.9rem;
+                border-radius: 4px;
+            ">✎ EDITAR</a>
 
-        <li>{{articulo.contenido}} </li>
-        <li>Fecha Publicacion: {{articulo.fecha_publicacion}} </li>
-        <li>Fecha modificacion: {{articulo.fecha_actualizacion}} </li>
-        <li>Autor: {{articulo.autor}} </li>
-        <li>Categoria: {{articulo.categoria}} </li>
+            <a href="{% url 'blog:path_eliminar_articulo' articulo.pk %}" style="
+                color: #ff4444; 
+                text-decoration: none; 
+                border: 1px solid #ff4444; 
+                padding: 5px 15px; 
+                font-size: 0.9rem;
+                border-radius: 4px;
+            ">X ELIMINAR</a>
+        </div>
+    </div>
+    {% endif %}
 
-        <div style="margin-left: 100 px;">
-            <h4>COMENTARIOS</h4>
+    <header style="border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 30px;">
+
+        <span style="
+            background-color: var(--neon-green); 
+            color: black; 
+            padding: 4px 8px; 
+            font-size: 0.8rem; 
+            font-weight: bold; 
+            border-radius: 2px;
+        ">
+            {{ articulo.categoria|upper }}
+        </span>
+
+        <h1 style="
+            font-size: 2.5rem; 
+            margin-top: 15px; 
+            margin-bottom: 10px; 
+            color: white; 
+            line-height: 1.2;
+        ">
+            {{ articulo.titulo }}
+        </h1>
+
+        <div style="color: #8b949e; font-size: 0.9rem; font-family: 'Courier New', monospace;">
+            <span>> AUTHOR: <strong style="color: #c9d1d9;">{{ articulo.autor.username }}</strong></span>
+            <span style="margin: 0 10px;">|</span>
+            <span>> DATE: {{ articulo.fecha_publicacion|date:"d M Y" }}</span>
+            {% if articulo.fecha_actualizacion != articulo.fecha_publicacion %}
+            <span style="margin: 0 10px;">|</span>
+            <span>(Updated: {{ articulo.fecha_actualizacion|date:"d M Y" }})</span>
+            {% endif %}
+        </div>
+    </header>
+
+    {% if articulo.imagen %}
+    <div style="margin-bottom: 30px; border: 1px solid #30363d; padding: 5px;">
+        <img src="{{ articulo.imagen.url }}" alt="{{ articulo.titulo }}"
+            style="width: 100%; height: auto; display: block;">
+    </div>
+    {% endif %}
+
+    <article style="
+        font-size: 1.1rem; 
+        line-height: 1.8; 
+        color: #c9d1d9; 
+        margin-bottom: 60px;
+        white-space: pre-wrap; /* Respeta los espacios y saltos de línea */
+    ">
+        {{ articulo.contenido }}
+    </article>
+
+
+    <section>
+        <h3 style="
+            border-left: 4px solid var(--neon-green); 
+            padding-left: 15px; 
+            color: white; 
+            margin-bottom: 30px;
+        ">
+            REGISTRO DE COMENTARIOS_
+        </h3>
+
+        <div style="margin-bottom: 40px;">
             {% for c in articulo.comentarios.all %}
-            <div style="margin-bottom: 15px; border-bottom: 1px solid gray; padding-bottom: 10px;">
+            <div style="
+                    background-color: #0d1117; 
+                    border: 1px solid #30363d; 
+                    padding: 20px; 
+                    margin-bottom: 15px; 
+                    border-radius: 6px;
+                    position: relative;
+                ">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span style="color: var(--neon-green); font-weight: bold; font-size: 0.9rem;">
+                        USER: {{ c.autor.username }}
+                    </span>
+                    <small style="color: gray;">{{ c.fecha_creacion|date:"d/m/Y H:i" }}</small>
+                </div>
 
-                <p><strong>{{ c.autor.username }}:</strong> {{ c.contenido }}</p>
-                <small>Fecha: {{ c.fecha_creacion }}</small>
+                <p style="color: #c9d1d9; margin: 0;">{{ c.contenido }}</p>
 
                 {% if user == c.autor or user.is_staff %}
-                <br>
-                <a href="{% url 'blog:path_borrar_comentario' c.pk %}" style="color: red; font-size: 0.9rem;">
-                    [Eliminar]
-                </a>
+                <div style="margin-top: 15px; text-align: right;">
+                    <a href="{% url 'blog:path_borrar_comentario' c.pk %}" style="
+                            color: #ff4444; 
+                            font-size: 0.8rem; 
+                            text-decoration: none; 
+                            border: 1px solid #ff4444; 
+                            padding: 2px 8px; 
+                            border-radius: 3px;
+                            transition: 0.3s;
+                        " onmouseover="this.style.backgroundColor='#ff4444'; this.style.color='white';"
+                        onmouseout="this.style.backgroundColor='transparent'; this.style.color='#ff4444';">
+                        [X] ELIMINAR DATOS
+                    </a>
+                </div>
                 {% endif %}
-
             </div>
             {% empty %}
-            <p>No hay comentarios aún.</p>
+            <div style="padding: 20px; text-align: center; border: 1px dashed gray; color: gray;">
+                No se han encontrado registros en este archivo.
+            </div>
             {% endfor %}
-            <form method="POST" action="{% url 'blog:path_comentar' articulo.pk %}"> {% csrf_token %}
-                <textarea style="width: 400px; height: 200px;" name="texto_comentado"></textarea>
-                <button type="submit">COMENTAR</button>
-            </form>
         </div>
 
-    </ul>
+        {% if user.is_authenticated %}
+        <div
+            style="background-color: #161b22; padding: 25px; border-radius: 8px; border-top: 2px solid var(--neon-green);">
+            <label style="color: var(--neon-green); font-weight: bold; display: block; margin-bottom: 10px;">
+                > ESCRIBIR NUEVA ENTRADA:
+            </label>
+
+            <form method="POST" action="{% url 'blog:path_comentar' articulo.pk %}">
+                {% csrf_token %}
+                <textarea name="texto_comentado" class="input-hacker" rows="4" placeholder="Ingrese su análisis..."
+                    style="resize: vertical;"></textarea>
+
+                <button type="submit" class="btn-login" style="margin-top: 15px; width: auto; padding: 10px 40px;">
+                    ENVIAR AL SISTEMA
+                </button>
+            </form>
+        </div>
+        {% else %}
+        <div style="text-align: center; margin-top: 30px;">
+            <p style="color: #8b949e;">Acceso de escritura denegado. Identifíquese para participar.</p>
+            <a href="{% url 'usuarios:path_login' %}" style="
+                    color: var(--neon-green); 
+                    border: 1px solid var(--neon-green); 
+                    padding: 10px 20px; 
+                    text-decoration: none; 
+                    font-weight: bold;
+                ">
+                > INICIAR SESIÓN
+            </a>
+        </div>
+        {% endif %}
+
+    </section>
 
 </div>
 
