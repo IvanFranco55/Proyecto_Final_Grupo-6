@@ -34,7 +34,14 @@
             style="text-align: left; background-color: #0d1117; padding: 20px; border-radius: 8px; border: 1px solid #30363d;">
             <p style="color: #c9d1d9; margin-bottom: 10px; font-family: monospace;">
                 <strong style="color: var(--neon-green);">> NOMBRE:</strong>
+
+                {% if user.first_name or user.last_name %}
                 {{ user.first_name }} {{ user.last_name }}
+                {% else %}
+                <span style="color: gray; font-style: italic; font-size: 0.9rem;">
+                    (Identidad desconocida / Solo Username)
+                </span>
+                {% endif %}
             </p>
             <p style="color: #c9d1d9; margin-bottom: 10px; font-family: monospace;">
                 <strong style="color: var(--neon-green);">> EMAIL:</strong>
