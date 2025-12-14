@@ -148,7 +148,7 @@
             </div>
             {% empty %}
             <div style="padding: 20px; text-align: center; border: 1px dashed gray; color: gray;">
-                No se han encontrado registros en este archivo.
+                No se han encontrado registros en este articulo.
             </div>
             {% endfor %}
         </div>
@@ -157,7 +157,7 @@
         <div
             style="background-color: #161b22; padding: 25px; border-radius: 8px; border-top: 2px solid var(--neon-green);">
             <label style="color: var(--neon-green); font-weight: bold; display: block; margin-bottom: 10px;">
-                > ESCRIBIR NUEVA ENTRADA:
+                > ESCRIBIR NUEVO COMENTARIO:
             </label>
 
             <form method="POST" action="{% url 'blog:path_comentar' articulo.pk %}">
@@ -166,7 +166,7 @@
                     style="resize: vertical;"></textarea>
 
                 <button type="submit" class="btn-login" style="margin-top: 15px; width: auto; padding: 10px 40px;">
-                    ENVIAR AL SISTEMA
+                    ENVIAR
                 </button>
             </form>
         </div>
