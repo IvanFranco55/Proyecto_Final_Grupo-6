@@ -93,7 +93,6 @@ class Eliminar_Articulo(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):
         articulo = self.get_object()
-        # Pasa si: Es el autor O si es Staff (admin)
         return self.request.user == articulo.autor or self.request.user.is_staff
 
 #LOGICA DE COMENTARIOS
@@ -121,3 +120,22 @@ def borrar_comentario(request, pk):
         comentario.delete()
 
     return redirect('blog:path_detalle_articulo', pk=id_articulo)
+
+def Filtro_Alfabetico(request, orden):
+    if orden == 'az':
+        # Orden ascendente (A-Z)
+        articulos = Articulo.objects.all().order_by('titulo')
+    elif orden == 'za':
+        # Orden descendente (Z-A)
+        articulos = Articulo.objects.all().order_by('-titulo')
+    else:
+        articulos = Articulo.objects.all()
+
+    categorias = Categoria.objects.all()
+    
+    context = {
+        'articulos': articulos,
+        'categorias': categorias
+    }
+
+    return render(request, 'blog/listar.html', context)

@@ -37,6 +37,22 @@
 
         <hr style="border-color: #30363d; margin: 20px 0;">
 
+        <label style="color:var(--neon-green); font-weight:bold; margin-bottom: 10px; display:block;">
+            ORDEN ALFABÉTICO:
+        </label>
+
+        <div style="display: flex; gap: 10px; flex-direction: column;">
+            <a href="{% url 'blog:path_filtrado_alfabetico' 'az' %}" class="btn-orden">
+                🔤 Título (A - Z)
+            </a>
+
+            <a href="{% url 'blog:path_filtrado_alfabetico' 'za' %}" class="btn-orden">
+                🔠 Título (Z - A)
+            </a>
+        </div>
+
+        <hr style="border-color: #30363d; margin: 20px 0;">
+
         <label style="color:var(--neon-green); font-weight:bold;">CATEGORÍAS:</label>
         <div class="dropdown-container" style="margin-top: 5px;">
             <button class="btn-dropdown">📂 Seleccionar Categoría ▼</button>
