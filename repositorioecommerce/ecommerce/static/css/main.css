@@ -563,3 +563,84 @@ button {
     box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
     transform: translateY(-2px);
 }
+
+@media screen and (max-width: 900px) {
+
+
+    .blog-container {
+        flex-direction: column;
+        padding: 20px;
+        gap: 40px;
+    }
+
+
+    .barra-lateral {
+        width: 100%;
+        box-sizing: border-box;
+        order: -1;
+    }
+
+    .grilla-articulos {
+        grid-template-columns: 1fr !important;
+    }
+
+    .header-principal {
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+        height: auto;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+        height: 80px;
+    }
+
+    nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    nav a {
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #21262d;
+    }
+
+    .user-panel {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .user-panel button,
+    .user-panel a {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .card-img-container {
+        height: 200px;
+    }
+
+    .tech-panel {
+        flex-direction: column;
+    }
+
+    .columna-info {
+        padding: 30px 20px;
+        min-width: auto;
+    }
+
+    .columna-mapa {
+        min-height: 300px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+        word-wrap: break-word;
+    }
+}
